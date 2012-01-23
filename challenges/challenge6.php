@@ -13,29 +13,31 @@ You should have received a copy of the GNU General Public License along with thi
 ?>
 <html>
 <head>
-	<title>XMLmao - XPath Challenge 4 - Love is Blind</title>
+	<title>XMLmao - XPath Challenge 6 - Up, Up, and Away!</title>
 </head>
 <body>
-	<center><h1>XMLmao - XPath Challenge 4 - Love is Blind</h1></center><br>
+	<center><h1>XMLmao - XPath Challenge 6 - Up, Up, and Away!</h1></center><br>
 
 	<hr width="40%">
 	<hr width="60%">
 	<hr width="40%">
 	
-You must perform an XPath injection attack in a string field where no results are shown.<br>
+You must perform an XPath injection attack injecting into a child node name where pipes and square brackets are filtered.<br>
 <br>
-Your objective is to pull the social security numbers from the XML document.
+Your objective is to retrieve the entire XML document.
 
 <pre>
 PARAMETERS:
-Injection Type - String value in condition
-Sanitization - None
-Output - Boolean results, no errors, query not shown
+Injection Type - Child node
+Sanitization - No pipes, no square brackets
+Output - All results, no errors, query not shown
 </pre>
 
 <form action="../xpath.php" method="get" name="challenge_form">
-	<input type="hidden" name="query_results" value="bool"/>
-	<input type="hidden" name="location" value="condition_string"/>
+	<input type="hidden" name="query_results" value="all"/>
+	<input type="hidden" name="pipes_remove" value="on"/>
+	<input type="hidden" name="brackets_remove" value="on"/>
+	<input type="hidden" name="location" value="sub_node"/>
 	<input type="hidden" name="error_level" value="none"/>
 	Injection String: <input type="text" name="inject_string"/><br>
 	<input type="submit" name="submit" value="Inject!"/>

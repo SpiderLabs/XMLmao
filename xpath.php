@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 		<tr><td>Output Query Results:</td><td><select name="query_results">
 			<option value="all">All results</option>
 			<option value="one">One value</option>
+			<option value="bool">Boolean (Zero/non-zero result set)</option>
 			<option value="none">No results</option>
 		</select></td></tr>
 		<tr><td>Show query?</td><td><input type='checkbox' name='show_query'></td></tr>
@@ -137,6 +138,9 @@ if(isset($_REQUEST['submit'])){
 				break;
 			case 'one':
 				print($results[0]);
+				break;
+			case 'bool':
+				if($results[0]) echo "Got results!<br>";
 				break;
 		}
 	}

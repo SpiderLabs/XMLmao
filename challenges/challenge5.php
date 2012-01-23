@@ -30,11 +30,12 @@ Your objective is to pull the user passwords from the XML document.
 PARAMETERS:
 Injection Type - String value in condition
 Sanitization - No pipes
-Output - No results, no errors, query not shown
+Output - All results, no errors, query not shown
 </pre>
 
 <form action="../xpath.php" method="get" name="challenge_form">
-	<input type="hidden" name="query_results" value="one"/>
+	<input type="hidden" name="query_results" value="all"/>
+	<input type="hidden" name="pipes_remove" value="on">
 	<input type="hidden" name="location" value="condition_string"/>
 	<input type="hidden" name="error_level" value="none"/>
 	Injection String: <input type="text" name="inject_string"/><br>
