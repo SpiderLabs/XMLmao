@@ -66,7 +66,7 @@ $xmldata = '
 if(isset($_REQUEST['submit'])){
 	
 	//sanitization section
-	if(isset($_REQUEST['quotes_remove']) and $_REQUEST['quotes_remove'] == 'on') $_REQUEST['inject_string'] = str_replace("'", "\'", $_REQUEST['inject_string']);
+	if(isset($_REQUEST['quotes_remove']) and $_REQUEST['quotes_remove'] == 'on') $_REQUEST['inject_string'] = str_replace("'", "", $_REQUEST['inject_string']);
 	if(isset($_REQUEST['spaces_remove']) and $_REQUEST['spaces_remove'] == 'on') $_REQUEST['inject_string'] = str_replace(' ', '', $_REQUEST['inject_string']);
 	if(isset($_REQUEST['brackets_remove']) and $_REQUEST['brackets_remove'] == 'on'){
 		$_REQUEST['inject_string'] = str_replace('[', '', $_REQUEST['inject_string']);
