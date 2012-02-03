@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License along with thi
 </head>
 <body>
 <center><h1>XMLmao - XPath Injection</h1></center><br>
+| <a href="xpath.php">XPath Injection</a> || <a href="xmlinjection.php">XML Injection</a> || <a href="challenges.htm">Challenges</a> | 
 <hr width="40%">
 <hr width="60%">
 <hr width="40%">

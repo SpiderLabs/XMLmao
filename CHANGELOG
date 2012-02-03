@@ -4,3 +4,10 @@ YAY IT WORKS
 v0.2
 Added tutorials and more challenges
 Fixed "Love is Blind" challenge so it's possible with current tools and techniques. Still working on new ones to make that configuration possible! ;)
+Added index.php file to make it look less ugly when you go to /xmlmao/
+
+v0.3
+Probably shouldn't have incremented a minor version last update but this update deserves one
+Added XML Injection page
+Shifted challenges folder to be xpath_challenges in order to distinguish between xpath challenges and xml injection challenges
+Minor interface changes in xpath.php
