@@ -11,3 +11,7 @@ Probably shouldn't have incremented a minor version last update but this update 
 Added XML Injection page
 Shifted challenges folder to be xpath_challenges in order to distinguish between xpath challenges and xml injection challenges
 Minor interface changes in xpath.php
+
+v0.3.1
+Added XML injection challenges
+Added XML injection tutorials
