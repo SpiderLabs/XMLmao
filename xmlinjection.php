@@ -23,29 +23,30 @@ You should have received a copy of the GNU General Public License along with thi
 <hr width="40%">
 <br>
 <form action='xmlinjection.php' name='inject_form' method='get'>
-	<table><tr><td>Injection String:</td><td><input type='text' name='inject_string'></td></tr>
+	<table><tr><td>Injection String:</td></tr>
+		<tr><td><textarea name='inject_string'></textarea></td></tr>
 	<tr><td>Injection Location:</td><td>
 		<select name="location">
 			<option value="attribute">Attribute</option>
-			<option value="value">Node Value</option>
-			<option value="cdatavalue">CDATA-wrapped Value</option>
+			<option value="value" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='value' ? 'selected' : ''); ?>>Node Value</option>
+			<option value="cdatavalue" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='cdatavalue' ? 'selected' : ''); ?>>CDATA-wrapped Value</option>
 		</select></td></tr>
 	<tr><td><b>Input Sanitization:</b></td></tr>
-		<tr><td>Remove Quotes?</td><td><input type='checkbox' name="quotes_remove"></td></tr>
-		<tr><td>Remove Spaces?</td><td><input type="checkbox" name="spaces_remove"></td></tr>
-		<tr><td>Remove Angle Brackets &lt; &gt;?</td><td><input type="checkbox" name="angle_remove"></td></tr>
-		<tr><td>Remove Square Brackets [ ]?</td><td><input type="checkbox" name="brackets_remove"></td></tr>
+		<tr><td>Remove Quotes?</td><td><input type='checkbox' name="quotes_remove" <?php echo (isset($_REQUEST['quotes_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Spaces?</td><td><input type="checkbox" name="spaces_remove" <?php echo (isset($_REQUEST['spaces_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Angle Brackets &lt; &gt;?</td><td><input type="checkbox" name="angle_remove" <?php echo (isset($_REQUEST['angle_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Square Brackets [ ]?</td><td><input type="checkbox" name="brackets_remove" <?php echo (isset($_REQUEST['brackets_remove']) ? 'checked' : ''); ?>></td></tr>
 	<tr><td><b>Output Level:</b></td></tr>
 		<tr><td>Output Query Results:</td><td><select name="query_results">
 			<option value="all">All results</option>
-			<option value="one">One value</option>
-			<option value="none">No results</option>
+			<option value="one" <?php echo (isset($_REQUEST['query_results']) and $_REQUEST['query_results']=='one' ? 'selected' : ''); ?>>One value</option>
+			<option value="none" <?php echo (isset($_REQUEST['query_results']) and $_REQUEST['query_results']=='none' ? 'selected' : ''); ?>>No results</option>
 		</select></td></tr>
-		<tr><td>Show XML?</td><td><input type='checkbox' name='show_xml'></td></tr>
+		<tr><td>Show XML?</td><td><input type='checkbox' name='show_xml' <?php echo (isset($_REQUEST['show_xml']) ? 'checked' : ''); ?>></td></tr>
 		<tr><td>Error Verbosity:</td><td><select name="error_level">
 			<option value="verbose">Verbose error messages</option>
-			<option value="generic">Generic error messages</option>
-			<option value="none">No error messages</option>
+			<option value="generic" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='generic' ? 'selected' : ''); ?>>Generic error messages</option>
+			<option value="none" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='none' ? 'selected' : ''); ?>>No error messages</option>
 		</select></td></tr>
 	</table>
 	<input type="submit" name="submit" value="Inject!">

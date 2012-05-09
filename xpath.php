@@ -23,35 +23,36 @@ You should have received a copy of the GNU General Public License along with thi
 <hr width="40%">
 <br>
 <form action='xpath.php' name='inject_form' method='get'>
-	<table><tr><td>Injection String:</td><td><input type='text' name='inject_string'></td></tr>
+	<table><tr><td>Injection String:</td></tr>
+	<tr><td><textarea name='inject_string'></textarea></td></tr>
 	<tr><td>Injection Location:</td><td>
 		<select name="location">
-			<option value="node_path">Node Path</option>
-			<option value="node_name">Node Name</option>
-			<option value="condition_var">Condition Variable</option>
 			<option value="condition_string">String Value in Condition</option>
-			<option value="condition_num">Numeric Value in Condition</option>
-			<option value="sub_node">Child Node</option>
-			<option value="entire_query">Entire Query</option>
+			<option value="condition_num" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='condition_num' ? 'selected' : ''); ?>>Numeric Value in Condition</option>
+			<option value="node_path" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='node_path' ? 'selected' : ''); ?>>Node Path</option>
+			<option value="node_name" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='node_name' ? 'selected' : ''); ?>>Node Name</option>
+			<option value="condition_var" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='condition_var' ? 'selected' : ''); ?>>Condition Variable</option>
+			<option value="sub_node" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='sub_node' ? 'selected' : ''); ?>>Child Node</option>
+			<option value="entire_query" <?php echo (isset($_REQUEST['location']) and $_REQUEST['location']=='entire_query' ? 'selected' : ''); ?>>Entire Query</option>
 		</select></td></tr>
 	<tr><td><b>Input Sanitization:</b></td></tr>
-		<tr><td>Remove Quotes?</td><td><input type='checkbox' name="quotes_remove"></td></tr>
-		<tr><td>Remove Spaces?</td><td><input type="checkbox" name="spaces_remove"></td></tr>
-		<tr><td>Remove Square Brackets?</td><td><input type="checkbox" name="brackets_remove"></td></tr>
-		<tr><td>Remove Slashes?</td><td><input type="checkbox" name="slashes_remove"></td></tr>
-		<tr><td>Remove Pipes?</td><td><input type="checkbox" name="pipes_remove"></td></tr>
+		<tr><td>Remove Quotes?</td><td><input type='checkbox' name="quotes_remove" <?php echo (isset($_REQUEST['quotes_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Spaces?</td><td><input type="checkbox" name="spaces_remove" <?php echo (isset($_REQUEST['spaces_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Square Brackets?</td><td><input type="checkbox" name="brackets_remove" <?php echo (isset($_REQUEST['brackets_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Slashes?</td><td><input type="checkbox" name="slashes_remove" <?php echo (isset($_REQUEST['slashes_remove']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Remove Pipes?</td><td><input type="checkbox" name="pipes_remove" <?php echo (isset($_REQUEST['pipes_remove']) ? 'checked' : ''); ?>></td></tr>
 	<tr><td><b>Output Level:</b></td></tr>
 		<tr><td>Output Query Results:</td><td><select name="query_results">
 			<option value="all">All results</option>
-			<option value="one">One value</option>
-			<option value="bool">Boolean (Zero/non-zero result set)</option>
-			<option value="none">No results</option>
+			<option value="one" <?php echo (isset($_REQUEST['query_results']) and $_REQUEST['query_results']=='one' ? 'selected' : ''); ?>>One value</option>
+			<option value="bool" <?php echo (isset($_REQUEST['query_results']) and $_REQUEST['query_results']=='bool' ? 'selected' : ''); ?>>Boolean (Zero/non-zero result set)</option>
+			<option value="none" <?php echo (isset($_REQUEST['query_results']) and $_REQUEST['query_results']=='none' ? 'selected' : ''); ?>>No results</option>
 		</select></td></tr>
-		<tr><td>Show query?</td><td><input type='checkbox' name='show_query'></td></tr>
+		<tr><td>Show query?</td><td><input type='checkbox' name='show_query' <?php echo (isset($_REQUEST['show_query']) ? 'checked' : ''); ?>></td></tr>
 		<tr><td>Error Verbosity:</td><td><select name="error_level">
 			<option value="verbose">Verbose error messages</option>
-			<option value="generic">Generic error messages</option>
-			<option value="none">No error messages</option>
+			<option value="generic" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='generic' ? 'selected' : ''); ?>>Generic error messages</option>
+			<option value="none" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='none' ? 'selected' : ''); ?>>No error messages</option>
 		</select></td></tr>
 	</table>
 	<input type="submit" name="submit" value="Inject!">
