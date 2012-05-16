@@ -13,18 +13,19 @@ You should have received a copy of the GNU General Public License along with thi
 ?>
 <html>
 <head>
-	<title>XMLmao - XML Injection Challenge 0 - Hello, world!</title>
+	<title>XMLmao - XML Injection Challenge 2 - Anti-Anti-XSS</title>
 </head>
 <body>
-	<center><h1>XMLmao - XML Injection Challenge 0 - Hello, world!</h1></center><br>
+	<center><h1>XMLmao - XML Injection Challenge 2 - Anti-Anti-XSS</h1></center><br>
 
 	<hr width="40%">
 	<hr width="60%">
 	<hr width="40%">
 	
-You must perform the simplest of XML injection attacks.<br>
+Browser-based anti-XSS measures involve comparing input to output. If inputs contain scripting and are used as part of a script in the resulting response, the script is not executed. If you can break the comparison, you can defeat the anti-XSS measures.<br>
 <br>
-Your objective is to inject an additional "data" tag into the XML.
+Your objective is to use XML injection to perform cross-site scripting which bypasses browser anti-XSS measures.<br>
+(Note: Firefox [without NoScript], Safari, and old versions of IE do not have anti-XSS protections. Try using a browser which has anti-XSS measures, like Chrome.)
 
 <pre>
 PARAMETERS:

@@ -15,3 +15,10 @@ Minor interface changes in xpath.php
 v0.3.1
 Added XML injection challenges
 Added XML injection tutorials
+
+v0.3.2
+Improved UI to remember options
+Added header value injection location for XXE attacks in XMLi mode
+Made blacklisting customizable
+Fixed display of final XML document in XMLi mode so it doesn't look like garbage
+Added new XMLi challenges

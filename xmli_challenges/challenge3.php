@@ -13,22 +13,22 @@ You should have received a copy of the GNU General Public License along with thi
 ?>
 <html>
 <head>
-	<title>XMLmao - XML Injection Challenge 0 - Hello, world!</title>
+	<title>XMLmao - XML Injection Challenge 3 - Too XXE For My Shirt</title>
 </head>
 <body>
-	<center><h1>XMLmao - XML Injection Challenge 0 - Hello, world!</h1></center><br>
+	<center><h1>XMLmao - XML Injection Challenge 3 - Too XXE For My Shirt</h1></center><br>
 
 	<hr width="40%">
 	<hr width="60%">
 	<hr width="40%">
 	
-You must perform the simplest of XML injection attacks.<br>
+External entity injection (also known as "XXE") attacks allow you to read files from the host with the permissions of the XML parser, as well as using the XML parser as a sort of proxy to do internal reconnaissance and even internal attacks.<br>
 <br>
-Your objective is to inject an additional "data" tag into the XML.
+Your objective is to read /etc/passwd or c:\boot.ini using an XXE attack.
 
 <pre>
 PARAMETERS:
-Injection Type - CDATA-wrapped value
+Injection Type - Header Value
 Sanitization - None
 Output - All results, verbose errors, xml shown
 </pre>
@@ -36,7 +36,7 @@ Output - All results, verbose errors, xml shown
 <form action="../xmlinjection.php" method="get" name="challenge_form">
 	<input type="hidden" name="query_results" value="all"/>
 	<input type="hidden" name="show_xml" value="on"/>
-	<input type="hidden" name="location" value="cdatavalue"/>
+	<input type="hidden" name="location" value="header_value"/>
 	<input type="hidden" name="error_level" value="verbose"/>
 	Injection String: <input type="text" name="inject_string"/><br>
 	<input type="submit" name="submit" value="Inject!"/>

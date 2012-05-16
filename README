@@ -16,6 +16,9 @@ a large amount of control over the manifestation of the flaws.
 XMLmao is based on the idea of SQLol, an earlier release which
 allows for SQL injection exploitation.
 
+Greetz to the folks at n|u http://null.co.in for giving me the motivation
+to code this tool.
+
 
 REQUIREMENTS
 ============

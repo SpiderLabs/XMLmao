@@ -37,7 +37,8 @@ Output - All results, verbose errors, query shown
 	<input type="hidden" name="query_results" value="all"/>
 	<input type="hidden" name="show_query" value="on"/>
 	<input type="hidden" name="location" value="condition_num"/>
-	<input type="hidden" name="quotes_remove" value="on"/>
+	<input type="hidden" name="blacklist_level" value="high"/>
+	<input type="hidden" name="blacklist_keywords" value="'">
 	<input type="hidden" name="error_level" value="verbose"/>
 	Injection String: <input type="text" name="inject_string"/><br>
 	<input type="submit" name="submit" value="Inject!"/>
