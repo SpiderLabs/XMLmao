@@ -56,6 +56,9 @@ You should have received a copy of the GNU General Public License along with thi
 			<option value="generic" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='generic') ? 'selected' : ''; ?>>Generic error messages</option>
 			<option value="none" <?php echo (isset($_REQUEST['error_level']) and $_REQUEST['error_level']=='none') ? 'selected' : ''; ?>>No error messages</option>
 		</select></td></tr>
+	<tr><td><b>Parser options:</b></td></tr>
+		<tr><td>Load external DTD?</td><td><input type='checkbox' name='ext_dtd' <?php echo (isset($_REQUEST['ext_dtd']) ? 'checked' : ''); ?>></td></tr>
+		<tr><td>Enable XInclude?</td><td><input type='checkbox' name='xinclude' <?php echo (isset($_REQUEST['xinclude']) ? 'checked' : ''); ?>></td></tr>
 	</table>
 	<input type="submit" name="submit" value="Inject!">
 </form>
@@ -79,7 +82,7 @@ if(isset($_REQUEST['submit'])){
 	include_once('includes/sanitize.inc.php');
 
 	if (isset($_REQUEST['custom_inject']) and $_REQUEST['custom_inject']!=''){
-		$displayxml = str_replace('*INJECT*', '<u>' . htmlentities($_REQUEST['inject_string']) . '</u>', htmlentities($_REQUEST['custom_inject']));
+		$displayxml = nl2br(str_replace('*INJECT*', '<u>' . htmlentities($_REQUEST['inject_string']) . '</u>', htmlentities($_REQUEST['custom_inject'])));
 		$xmldata = str_replace('*INJECT*', $_REQUEST['inject_string'], $_REQUEST['custom_inject']);
 	}else{
 		switch($_REQUEST['location']){
@@ -104,31 +107,45 @@ if(isset($_REQUEST['submit'])){
 				$xmldata = str_replace('Inject2', $_REQUEST['inject_string'], $xmldata);
 				break;
 		}
-		$displayxml = str_replace("\n", '<br>', $displayxml);
+		$displayxml = nl2br($displayxml, false);
 	}
 	
-	if(isset($_REQUEST['show_xml']) and $_REQUEST['show_xml'] == 'on') echo "\nResulting XML:\n" . $displayxml . '<br>';
+	if(isset($_REQUEST['show_xml']) and $_REQUEST['show_xml'] == 'on') echo "<br>Resulting XML:<br>" . $displayxml . '<br>';
 	
+	$xmloptions = 0;
+	
+	//Enable external DTD loading if the option is on
+	if(isset($_REQUEST['ext_dtd']) and $_REQUEST['ext_dtd'] == 'on') $xmloptions = $xmloptions | LIBXML_DTDLOAD;
+
 	$xml = '';
-	
+
 	if(isset($_REQUEST['error_level'])){
 		switch ($_REQUEST['error_level']){
 			case 'generic':
 				ini_set('display_errors', 0);
-				$xml = simplexml_load_string($xmldata);
+				$xml = simplexml_load_string($xmldata,'SimpleXMLElement',$xmloptions);
 				if(!$results) echo "An error occurred." . "\n<br>";
 				break;
 			case 'verbose':
 				ini_set('display_errors', 1);
-				$xml = simplexml_load_string($xmldata);
+				$xml = simplexml_load_string($xmldata,'SimpleXMLElement',$xmloptions);
 				break;
 			case 'none':
 				ini_set('display_errors', 0);
-				$xml = simplexml_load_string($xmldata);
+				$xml = simplexml_load_string($xmldata,'SimpleXMLElement',$xmloptions);
 				break;
 		}
 	}
 	
+	//Hack to get XInclude working since SimpleXML doesn't REALLY do xinclude
+	//Despite an option which would suggest it does
+	if(isset($_REQUEST['xinclude']) and $_REQUEST['xinclude']=='on'){
+		$dom = dom_import_simplexml($xml);
+		$dom->ownerDocument->xinclude();
+		
+		$xml = simplexml_import_dom($dom);
+	}
+
 	switch ($_REQUEST['query_results']){
 		case 'all':
 			foreach ($xml->data as $data){
