@@ -22,3 +22,15 @@ Added header value injection location for XXE attacks in XMLi mode
 Made blacklisting customizable
 Fixed display of final XML document in XMLi mode so it doesn't look like garbage
 Added new XMLi challenges
+
+v0.3.3
+Added option for external DTD loading
+Added option for XInclude processing
+Added new XMLi challenges
+
+v0.4
+Added whitelisting filter type
+Added regex filtering type
+Added environmental options
+Updated structure of XMLmao to be more modular
+Fixed bug in medium and high blacklist filtering which caused injection string to be made lower case

@@ -35,8 +35,9 @@ Output - All results, no errors, query not shown
 
 <form action="../xpath.php" method="get" name="challenge_form">
 	<input type="hidden" name="query_results" value="all"/>
-	<input type="hidden" name="blacklist_level" value="high"/>
-	<input type="hidden" name="blacklist_keywords" value="|,[,]">
+	<input type="hidden" name="sanitization_level" value="high"/>
+	<input type="hidden" name="sanitization_params" value="|,[,]">
+	<input type="hidden" name="sanitization_type" value="keyword">
 	<input type="hidden" name="location" value="sub_node"/>
 	<input type="hidden" name="error_level" value="none"/>
 	Injection String: <input type="text" name="inject_string"/><br>
